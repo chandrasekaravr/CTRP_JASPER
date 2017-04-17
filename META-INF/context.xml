@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><Context path="/jasperserver" reloadable="false">
+            
+    <!-- maxActive: Maximum number of dB connections in pool. Make sure you
+         configure your mysqld max_connections large enough to handle
+         all of your db connections. Set to 0 for no limit.
+    -->
+    <!-- maxIdle: Maximum number of idle dB connections to retain in pool.
+         Set to -1 for no limit.  See also the DBCP documentation on this
+         and the minEvictableIdleTimeMillis configuration parameter.
+     -->
+    <!-- maxWait: Maximum time to wait for a dB connection to become available
+         in ms, in this example 10 seconds. An Exception is thrown if
+         this timeout is exceeded.  Set to -1 to wait indefinitely.
+    -->
+        
+    <!-- Additional properties to consider. Settings for specifying a      -->
+    <!-- validation query to help with reconnect/timeout errors.           -->
+    <!-- Exact syntax may vary with database type (this tested on mysql.   -->
+    <!--                                                                   -->
+    <!--   validationQuery="select 1"                                      -->
+    <!--   testOnBorrow="true"                                             -->
+    <!--   (and add this to url property): &amp;autoReconnectForPools=true -->
+       
+
+<!-- 
+
+    <Resource auth="Container" driverClassName="org.postgresql.Driver" maxActive="100" maxIdle="30" maxWait="10000" name="jdbc/jasperserver" password="js83ojdsjhs" testOnBorrow="true" type="javax.sql.DataSource" url="jdbc:postgresql://ncidb-d115.nci.nih.gov:5477/jasper_ctrpn" username="jasperdev" validationQuery="SELECT 1"/>
+
+-->
+
+<Resource name="jdbc/jasperserver" auth="Container" type="javax.sql.DataSource"
+        maxActive="100" maxIdle="30" maxWait="10000"
+        username="jasperdev" password="js83ojdsjhs"
+        driverClassName="org.postgresql.Driver"
+        validationQuery="SELECT 1"
+        testOnBorrow="true"
+        url="jdbc:postgresql://ctrp.clb9vkosemwm.us-east-1.rds.amazonaws.com:5432/jasper_ctrp?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"  />
+
+    
+
+    
+
+    <!-- Comment this line to enable session persistence across Tomcat restarts -->
+    <Manager pathname=""/>
+</Context>
