@@ -7,10 +7,13 @@ ENV JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/
 
 RUN sed -i '/#JAVA_OPTS/aJAVA_OPTS="-Xms128m -Xmx1024m -XX:MaxPermSize=512m"' /usr/local/tomcat/bin/catalina.sh
 
-COPY reports.zip /tmp
-RUN unzip /tmp/reports.zip -d /tmp/
+RUN mkdir /tmp/reports
+#COPY reports.zip /tmp
+COPY reports /tmp/reports
+#RUN unzip /tmp/reports.zip -d /tmp/
 RUN ls /tmp
 RUN mv /tmp/reports/* /usr/local/tomcat/webapps/
+RUN ls /usr/local/tomcat/webapps/
 COPY jasperserver.license /usr/local/tomcat
 
 CMD ["catalina.sh", "run"]
